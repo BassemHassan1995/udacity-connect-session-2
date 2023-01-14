@@ -2,7 +2,7 @@ package bassem.udacity.session2.utils
 
 import androidx.databinding.InverseMethod
 
-object Converter {
+object Converters {
 
     @InverseMethod("stringToInt")
     @JvmStatic

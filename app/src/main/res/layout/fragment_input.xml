@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="user"
-            type="bassem.udacity.session2.User" />
+            name="viewModel"
+            type="bassem.udacity.session2.ui.SharedViewModel" />
 
     </data>
 
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@={user.name}" />
+                android:text="@={viewModel.user.name}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:text="@={`` + viewModel.height}" />
+                android:text="@={`` + viewModel.user.height}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@={viewModel.isMale}"
+                android:checked="@={viewModel.user.male}"
                 android:text="@string/male" />
 
             <RadioButton
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="@={!viewModel.isMale}"
+                android:checked="@={!viewModel.user.male}"
                 android:text="@string/female" />
         </RadioGroup>
 

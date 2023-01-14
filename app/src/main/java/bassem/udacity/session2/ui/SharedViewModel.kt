@@ -1,26 +1,26 @@
 package bassem.udacity.session2.ui
 
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import bassem.udacity.session2.User
 
 class SharedViewModel : ViewModel() {
 
-    private val _navigateToWeight: MutableLiveData<Boolean> = MutableLiveData(false)
-    val navigateToWeight: LiveData<Boolean> = _navigateToWeight
+    private val _user: MutableLiveData<User> = MutableLiveData(User())
+    val user: LiveData<User> = _user
 
-    val name: ObservableField<String> = ObservableField("")
-    val height: ObservableInt = ObservableInt()
-    val isMale: ObservableBoolean = ObservableBoolean(true)
-
-    val calculatedWeight: ObservableInt = ObservableInt(0)
+    private val _calculatedWeight: MutableLiveData<Int> = MutableLiveData(0)
+    val calculatedWeight: LiveData<Int> = _calculatedWeight
 
     fun onCalculateIBWButtonClicked() {
-        calculatedWeight.set(calculateIdealBodyWeight(height.get(), isMale.get()))
-        _navigateToWeight.value = true
+        user.value?.let {
+            _calculatedWeight.value = calculateIdealBodyWeight(it.height?: 100, it.isMale)
+        }
+    }
+
+    fun onNewCalculationButtonClicked() {
+        resetValues()
     }
 
     private fun calculateIdealBodyWeight(userHeight: Int, isMale: Boolean): Int =
@@ -28,5 +28,10 @@ class SharedViewModel : ViewModel() {
             true -> userHeight - 100
             false -> userHeight - 105
         }
+
+    private fun resetValues() {
+        _calculatedWeight.value = -1
+        _user.value = User()
+    }
 
 }

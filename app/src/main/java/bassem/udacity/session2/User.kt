@@ -1,4 +1,3 @@
 package bassem.udacity.session2
 
-data class User(val name: String, val age: Int) {
-}
+data class User(var name: String = "", var height: Int? = null, var isMale: Boolean = true)
