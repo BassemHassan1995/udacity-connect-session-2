@@ -15,7 +15,7 @@ class SharedViewModel : ViewModel() {
 
     fun onCalculateIBWButtonClicked() {
         user.value?.let {
-            _calculatedWeight.value = calculateIdealBodyWeight(it.height?: 100, it.isMale)
+            _calculatedWeight.value = calculateIdealBodyWeight(it.height, it.isMale)
         }
     }
 
